@@ -45,6 +45,9 @@ export default function Index() {
                     <Button size='xlarge' block type='primary' onClick={handleStartTest}>{hasResult?'重新测试':'开始测试'}</Button>
                     {hasResult?<Button size='xlarge' block type='primary' fill='outline' onClick={handleViewResult}>查看测试报告</Button>:''}
                 </Space>
+                <View className={styles.jbbHomeBodyInfo}>
+                    本测试不收集任何个人信息
+                </View>
             </View>
             <View className={styles.jbbHomeFooter}></View>
         </View>

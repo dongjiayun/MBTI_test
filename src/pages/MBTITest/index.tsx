@@ -31,6 +31,9 @@ export default function Index() {
                     setCurrentSectionId(current)
                     sectionHandle(current)
                     Dialog.close('useCache')
+                },
+                onCancel:()=>{
+                    Dialog.close('useCache')
                 }
             })
         }
@@ -112,6 +115,14 @@ export default function Index() {
         })
     }
 
+    const handleNext = () =>{
+        setCurrentQuestionId(prevQuestionId=>{
+            const newQuestionId = prevQuestionId + 1
+            sectionHandle(newQuestionId)
+            return newQuestionId
+        })
+    }
+
     const sectionHandle = (questionId) => {
         const sectionId = questions.findIndex(section=>{
             return section.questions.some(question=>{
@@ -127,6 +138,9 @@ export default function Index() {
                 title:'请完成所有题目',
                 icon:'none'
             })
+            const firstEmptyAnswer = Object.keys(answers).find(i=>!answers[i])
+            setCurrentQuestionId(Number(firstEmptyAnswer))
+            sectionHandle(firstEmptyAnswer)
             return
         }
         const charaterMap = {
@@ -207,6 +221,7 @@ export default function Index() {
                 <View className={styles.jbbMbtiTestFooter}>
                     <Space direction='vertical'>
                         {currentQuestionId > 1?<Button onClick={handlePrevious} size='large' block type='primary'>上一题</Button>:''}
+                        {currentQuestionId !==93?<Button onClick={handleNext} size='large' block type='primary'>下一题</Button>:''}
                         {currentQuestionId === 93 ?<Button onClick={handleResult} size='large' block type='primary' fill='outline'>查看结果</Button>:''}
                     </Space>
                 </View>
