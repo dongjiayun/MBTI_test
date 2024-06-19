@@ -34,9 +34,11 @@ export default function Index() {
                     setCurrentQuestionId(current)
                     setCurrentSectionId(current)
                     sectionHandle(current)
+                    clearLocalCache()
                     Dialog.close('useCache')
                 },
                 onCancel:()=>{
+                    clearLocalCache()
                     Dialog.close('useCache')
                 }
             })
@@ -49,6 +51,11 @@ export default function Index() {
             Local.set('MBTITestCurrent', currentQuestionId)
         }
     })
+
+    const clearLocalCache = () =>{
+        Local.remove('MBTITest')
+        Local.remove('MBTITestCurrent')
+    }
 
     const [currentSectionId, setCurrentSectionId] = useState(0)
 
