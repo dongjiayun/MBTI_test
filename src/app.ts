@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { useLaunch,useDidShow } from '@tarojs/taro'
+import Taro,{ useLaunch,useDidShow } from '@tarojs/taro'
 import '@nutui/nutui-react-taro/dist/style.css'
 
 import './app.scss'
