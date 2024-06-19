@@ -46,7 +46,7 @@ export default function Index() {
     })
 
     useUnload(()=>{
-        if(!isFinished) {
+        if(!isFinished&&currentQuestionId>1) {
             Local.set('MBTITest', answers)
             Local.set('MBTITestCurrent', currentQuestionId)
         }
