@@ -1,5 +1,6 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import * as path from 'path'
 import devConfig from './dev'
 import prodConfig from './prod'
 
@@ -7,6 +8,7 @@ import prodConfig from './prod'
 export default defineConfig(async (merge, { command, mode }) => {
     const baseConfig: UserConfigExport = {
         projectName: 'MBTITest',
+        alias: { '@image': path.resolve(__dirname, '../src/assets') },
         date: '2024-6-14',
         designWidth (input) {
             // 配置 NutUI 375 尺寸

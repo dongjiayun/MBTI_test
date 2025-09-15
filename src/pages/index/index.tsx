@@ -5,6 +5,7 @@ import {Local} from "@/utils/storage";
 
 import styles from './index.module.scss'
 
+
 export default function Index() {
 
     useLoad(() => {
@@ -15,7 +16,7 @@ export default function Index() {
         return {
             title: '最专业的MBTI测试',
             path: '/pages/index/index',
-            imageUrl:'https://res.ipetapi.com/upload/test/test_logo.jpg'
+            imageUrl: 'http://t2mftreqh.hn-bkt.clouddn.com/test_logo%20%281%29.jpg'
         }
     })
 

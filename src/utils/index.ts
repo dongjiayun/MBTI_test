@@ -2,9 +2,6 @@ import { round, floor } from 'lodash'
 // @ts-ignore
 import type { Param, Dicts } from '@/types/base.d.ts'
 // @ts-ignore
-import { useAppStore } from '@/stores/app'
-// @ts-ignore
-import { CommonModel } from '@/api'
 
 interface dictProp {
     value:string,
@@ -133,21 +130,6 @@ export const query2Json = (queryStr:string):object => {
     return result
 }
 
-let loadingTimeout:any
-export class Loading {
-    static close() {
-        const store = useAppStore()
-        store.$patch({ showLoading: false })
-        clearTimeout(loadingTimeout)
-    }
-
-    static show() {
-        const store = useAppStore()
-        loadingTimeout = setTimeout(() => {
-            store.$patch({ showLoading: true })
-        }, 200)
-    }
-}
 
 export const getSrc = (src:string):string => {
     // @ts-ignore
@@ -159,31 +141,7 @@ const areaList:any = {
     city_list: {},
     county_list: {}
 }
-export const getArea = () => {
-    if (Object.keys(areaList.province_list).length > 0) {
-        return Promise.resolve(areaList)
-    }
-    return CommonModel.getAreaList().then(res => {
-        if (res.status === 0) {
-            // @ts-ignore
-            const data = res.data as AreaList
-            data.forEach(province => {
-                areaList.province_list[province.code] = province.name
-                if (province.children && province.children.length > 0) {
-                    province.children.forEach(city => {
-                        areaList.city_list[city.code] = city.name
-                        if (city.children && city.children.length > 0) {
-                            city.children.forEach(county => {
-                                areaList.county_list[county.code] = county.name
-                            })
-                        }
-                    })
-                }
-            })
-            return areaList
-        }
-    })
-}
+
 
 export const toDurationSimple = (seconds:number) => {
     seconds = parseInt(seconds.toString())

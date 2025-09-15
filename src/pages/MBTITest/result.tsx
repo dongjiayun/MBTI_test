@@ -7,6 +7,7 @@ import {Divider,Cell,Progress,Button} from '@nutui/nutui-react-taro'
 import styles from './result.module.scss'
 import {characters as charactersData,character} from './characters'
 
+
 export default function Result() {
     const [answers, setAnswers] = useState<{[key:number]:'E'|'I'|'S'|'N'|'T'|'F'|'J'|'P'}>({})
     const [result,setResult] = useState<{
@@ -29,9 +30,9 @@ export default function Result() {
 
     useShareAppMessage(()=>{
         return {
-            title: `我的MBTI性格是${characterData?.name},一起来测测吧`,
+            title: `我的MBTI性格是${characterData?.name},人群中丰度为${characterData?.percent}一起来测测吧`,
             path: '/pages/index/index',
-            imageUrl:'https://res.ipetapi.com/upload/test/test_logo.jpg'
+            imageUrl:'http://t2mftreqh.hn-bkt.clouddn.com/test_logo%20%281%29.jpg'
         }
     })
 
